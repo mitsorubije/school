@@ -4,13 +4,13 @@
 #include <cstdbool>
 
 int main() {
-    Person * me = new Person("Lukas", "Krocek", 2000);
-    Person * father = new Person("Martin", "Krocek", 1970);
-    Person * mother = new Person("Alena", "Krockova", 1975);
-    Person * grandfather = new Person("Karel", "Krocek", 1940);
-    Person * grandmother = new Person("Alzbeta", "Krockova", 1930);
-    Person * grandfather2 = new Person("Tomas", "Krocek", 1940);
-    Person * grandmother2 = new Person("Agata", "Krockova", 1930);
+    FamilyTreePerson * me = new FamilyTreePerson("Lukas", "Krocek", 2000);
+    FamilyTreePerson * father = new FamilyTreePerson("Martin", "Krocek", 1970);
+    FamilyTreePerson * mother = new FamilyTreePerson("Alena", "Krockova", 1975);
+    FamilyTreePerson * grandfather = new FamilyTreePerson("Karel", "Krocek", 1940);
+    FamilyTreePerson * grandmother = new FamilyTreePerson("Alzbeta", "Krockova", 1930);
+    FamilyTreePerson * grandfather2 = new FamilyTreePerson("Tomas", "Krocek", 1940);
+    FamilyTreePerson * grandmother2 = new FamilyTreePerson("Agata", "Krockova", 1930);
     Person * student1 = new Person("Kamil", "Lichnovsky", 1988);
     Person * student2 = new Person("Petr", "Dalny", 1999);
     Person * student3 = new Person("Katerina", "Dobrovska", 2003);
@@ -22,6 +22,8 @@ int main() {
     father->SetMother(grandmother);
     mother->SetFather(grandfather2);
     mother->SetMother(grandmother2);
+    //konstruktor přímo s rodiči:
+    FamilyTreePerson * sister = new FamilyTreePerson("Michaela", "Krockova", 2006, father, mother);
 
      School * skola = new School("VSB", 3);
     skola->AddStudent(me);
@@ -68,6 +70,10 @@ int main() {
     int a = c;
     cout << a << endl;*/
 
+    cout << endl;
+    me->PrintTree();
+    cout << endl;
+    sister->PrintTree();
 
     return 0;
 }

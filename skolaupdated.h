@@ -9,8 +9,9 @@ private:
     string _secondName;
     int _year;
     
-    Person* _father;
-    Person* _mother;
+    //father a mother veci presunuty do FamilyTreePerson
+    //Person* _father;
+    //Person* _mother;
     string _address;
 
     static int _pocet; //staticky counter kolik mame objektu tridy person, muzem k nemu pristupovat pomocí Person::_pocet tkze nepotrebujeme zadnou konkretni osobu k pristupu atak
@@ -20,8 +21,8 @@ public:
         this->_name = name;
         this->_secondName = secondName;
         this->_year = year;
-        this->_father = NULL;
-        this->_mother = NULL;
+        //this->_father = NULL;
+        //this->_mother = NULL;
         this->_address = "";
         Person::IncPocet(); //staticke promene muzem bud takhle pomoci funkcí upravovat
     }
@@ -61,10 +62,46 @@ public:
         // hotovo
     }
 
-    void SetFather(Person* father){
+    void SetAddress(string adresa){
+        this->_address = adresa;
+    }
+
+    string GetAddress(){
+        return this->_address;
+    }
+
+};
+
+int Person::_pocet = 0;
+
+
+//TODO: napsat si nejaky vlastni příklad dedičnosti, např trida shape a potomky square circle atd, nebo bytost zvire savec atak. alespon 3 tridy, alespon 1 vlastnost a 1 metodu
+//TODO2: + poslat aji kod tohohle FamilyTreePerson
+class FamilyTreePerson : public Person
+{
+
+private:
+    FamilyTreePerson* _father;
+    FamilyTreePerson* _mother;
+
+public:
+    FamilyTreePerson(string name, string secondName, int year) : Person(name, secondName, year){
+        this->_father = NULL;
+        this->_mother = NULL;
+    }
+
+    FamilyTreePerson(string name, string secondName, int year, FamilyTreePerson* father, FamilyTreePerson* mother) : Person(name, secondName, year){
+        this->_father = father;
+        this->_mother = mother;
+    }
+
+    ~FamilyTreePerson(){
+    }
+
+    void SetFather(FamilyTreePerson* father){
         this->_father = father;
     }
-    void SetMother(Person* mother){
+    void SetMother(FamilyTreePerson* mother){
         this->_mother = mother;
     }
 
@@ -86,17 +123,8 @@ public:
         }
     }
 
-    void SetAddress(string adresa){
-        this->_address = adresa;
-    }
-
-    string GetAddress(){
-        return this->_address;
-    }
-
 };
 
-int Person::_pocet = 0;
 
 
 class LoginGeneratorService
